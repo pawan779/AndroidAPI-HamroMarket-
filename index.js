@@ -2,6 +2,7 @@ const express=require("express");
 const mongoose=require("mongoose");
 const user=require("./models/users")
 const dotenv = require('dotenv').config();
+const userRouter=require('./routes/users');
 const app=express();
 
 app.use(express.static(__dirname + "/public"));
@@ -17,6 +18,8 @@ mongoose.connect(process.env.URL,{
 },(err)=>console.log(err));
 
 
+
+app.use('/users',userRouter);
 
 app.listen(process.env.PORT,() =>{
     console.log(`App is running at localhost:${process.env.PORT}`);
