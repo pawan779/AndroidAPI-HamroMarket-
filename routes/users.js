@@ -13,13 +13,15 @@ router.post('/signup', (req, res, next) => {
             return next(err);
         }
         User.create({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            address: req.body.address,
-            phone: req.body.phone,
-            username: req.body.username,
-            password: hash,
-            image: req.body.image
+            fullName:req.body.fullName,
+            address1:req.body.address1,
+            address2:req.body.address2,
+            address3:req.body.address3,
+            phone:req.body.phone,
+            mobilePhone:req.body.mobilePhone,
+            email:req.body.email,
+            password:hash,
+            image:req.body.image
         }).then((user) => {
             let token = jwt.sign({
                 _id: user._id
@@ -34,7 +36,7 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
     User.findOne({
-            username: req.body.username
+            email: req.body.email
         })
         .then((user) => {
             if (user == null) {
