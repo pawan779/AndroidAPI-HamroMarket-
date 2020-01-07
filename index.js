@@ -10,6 +10,8 @@ const uploadRouter=require('./routes/upload');
 
 const app=express();
 app.use(express.json());
+app.use(morgan("tiny"))
+app.use(express.urlencoded({extended: true }));
 app.use(express.static(__dirname + "/public"));
 
 mongoose.connect(process.env.URL,{

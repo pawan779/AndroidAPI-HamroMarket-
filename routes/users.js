@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/users');
 const router = express.Router();
 
-router.post('/signup', (req, res, next) => {
+router.post('/register', (req, res, next) => {
     let password = req.body.password;
     bcrypt.hash(password, 10, function (err, hash) {
         if (err) {
@@ -36,7 +36,7 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
     User.findOne({
-            email: req.body.email
+            email:req.body.email
         })
         .then((user) => {
             if (user == null) {
@@ -53,7 +53,7 @@ router.post('/login', (req, res, next) => {
                         }
                         let token = jwt.sign({
                             _id: user._id
-                        }, process.env.SECRET);
+                        }, "secret message");
                         res.json({
                             status: 'Login success!',
                             token: token
