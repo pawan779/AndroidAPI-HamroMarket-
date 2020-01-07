@@ -64,5 +64,7 @@ router.post('/login', (req, res, next) => {
         }).catch(next);
 })
 
+router.get('/me',)
+
 
 module.exports = router;
