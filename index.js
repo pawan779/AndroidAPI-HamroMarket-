@@ -5,12 +5,15 @@ const user=require("./models/users")
 const dotenv = require('dotenv').config();
 const userRouter=require('./routes/users');
 const uploadRouter=require('./routes/upload');
+const productRouter=require('./routes/products');
+const cors = require('cors')
 
 
 
 const app=express();
 app.use(express.json());
 app.use(morgan("tiny"))
+app.options('*', cors());
 app.use(express.urlencoded({extended: true }));
 app.use(express.static(__dirname + "/public"));
 
@@ -28,6 +31,7 @@ mongoose.connect(process.env.URL,{
 
 app.use('/users',userRouter);
 app.use('/upload',uploadRouter);
+app.use('/products',productRouter);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
