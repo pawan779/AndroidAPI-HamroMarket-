@@ -12,7 +12,6 @@ const userSchema=new mongoose.Schema(
         },
         address1:{
             type:String,
-            required:true
         },
         address2:{
             type:String,
@@ -24,7 +23,6 @@ const userSchema=new mongoose.Schema(
         },
         phone:{
             type:String,
-            required:true
         },
         mobilePhone: {
             type: String,
@@ -36,7 +34,8 @@ const userSchema=new mongoose.Schema(
             required: true
         },
         image: {
-            type: String
+            type: String,
+            required:true
         },
         admin: {
             type: Boolean,
