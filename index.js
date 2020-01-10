@@ -38,7 +38,6 @@ app.use((err, req, res, next) => {
     res.statusCode = 500;
     res.json({ status: err.message });
 });
-
 app.listen(process.env.PORT,() =>{
     console.log(`App is running at localhost:${process.env.PORT}`);
 })
