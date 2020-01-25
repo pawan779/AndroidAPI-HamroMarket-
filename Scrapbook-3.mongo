@@ -1,0 +1,1 @@
+db.users.insert({username: "admin", password:"$2a$10$cYyQi47x722YMfOQVCrQDe7nbu8HMErVDA4lDek0q7TrWs1axCD0O", admin: true})

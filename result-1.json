@@ -1,0 +1,18 @@
+{
+	"result": {
+		"ok": 1,
+		"n": 1
+	},
+	"ops": [
+		{
+			"username": "admin",
+			"password": "$2a$10$cYyQi47x722YMfOQVCrQDe7nbu8HMErVDA4lDek0q7TrWs1axCD0O",
+			"admin": true,
+			"_id": "5e22ba7fcd63774da0efea59"
+		}
+	],
+	"insertedCount": 1,
+	"insertedIds": {
+		"0": "5e22ba7fcd63774da0efea59"
+	}
+}

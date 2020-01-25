@@ -1,1 +1,1 @@
-db.users.insert({email: "admin@gmail.com", password:"12345", admin: true});
+db.users.insert({email: "admin@admin.com", password:"$2a$10$cYyQi47x722YMfOQVCrQDe7nbu8HMErVDA4lDek0q7TrWs1axCD0O", admin: true});

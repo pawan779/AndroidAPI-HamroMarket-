@@ -70,7 +70,8 @@ router.get('/me',auth.verifyUser,(req,res,next)=>{
         _id:req.user._id,
         fullName:req.user.fullName,
         email:req.user.email,
-        image:req.user.image
+        image:req.user.image,
+        admin:req.user.admin
     });
 
 });

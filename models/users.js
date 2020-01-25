@@ -4,38 +4,38 @@ const userSchema=new mongoose.Schema(
     {
         fullName:{
             type:String,
-            required:true
+            // required:true
         },
         email:{
             type:String,
-            required:true
+            // required:true
         },
         address1:{
             type:String,
         },
         address2:{
             type:String,
-            required:true
+            // required:true
         },
         address3:{
             type:String,
-            required:true
+            // required:true
         },
         phone:{
             type:String,
         },
         mobilePhone: {
             type: String,
-            required: true,
+            // required: true,
             minlength: 10
         },
         password: {
             type: String,
-            required: true
+            // required: true
         },
         image: {
             type: String,
-            required:true
+            // required:true
         },
         admin: {
             type: Boolean,
