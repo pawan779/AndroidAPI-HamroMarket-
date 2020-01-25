@@ -2,15 +2,17 @@ const express=require("express");
 const mongoose=require("mongoose");
 const morgan = require('morgan');
 const user=require("./models/users")
+const bodyParser=require('body-parser')
 const dotenv = require('dotenv').config();
 const userRouter=require('./routes/users');
 const uploadRouter=require('./routes/upload');
 const productRouter=require('./routes/products');
+const categoryRouter=require('./routes/category')
 const cors = require('cors')
 
 
 const app=express();
-app.use(express.json());
+app.use(bodyParser.json());
 app.use(morgan("tiny"))
 app.use(cors());
 app.use(express.urlencoded({extended: true }));
@@ -30,11 +32,12 @@ mongoose.connect(process.env.URL,{
 
 app.use('/users',userRouter);
 app.use('/upload',uploadRouter);
+app.use('/category',categoryRouter);
 app.use('/products',productRouter);
 
+//for error handelling middleware
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.statusCode = 500;
+    res.statusCode = 422;
     res.json({ status: err.message });
 });
 app.listen(process.env.PORT,() =>{
