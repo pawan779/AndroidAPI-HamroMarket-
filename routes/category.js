@@ -12,5 +12,12 @@ router.route('/')
     })
     .catch(next)
 })
+.post(auth.verifyUser,(req,res,next)=>{
+    Category.create(req.body)
+    .then((result)=>{
+        res.json(result)
+    })
+    .catch(next)
+})
 
 module.exports=router;
