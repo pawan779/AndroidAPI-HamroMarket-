@@ -9,6 +9,7 @@ const uploadRouter=require('./routes/upload');
 const productRouter=require('./routes/products');
 const categoryRouter=require('./routes/category')
 const cors = require('cors')
+const auth=require('./auth')
 
 
 const app=express();
@@ -32,14 +33,24 @@ mongoose.connect(process.env.URL,{
 
 app.use('/users',userRouter);
 app.use('/upload',uploadRouter);
-app.use('/category',categoryRouter);
 app.use('/products',productRouter);
+app.use(auth.verifyUser);
+app.use('/category',categoryRouter);
+
 
 //for error handelling middleware
+// app.use((err, req, res, next) => {
+//     res.statusCode = 422;
+//     res.json({ status: err.message });
+// });
+
+
 app.use((err, req, res, next) => {
-    res.statusCode = 422;
+    console.error(err.stack);
+    res.statusCode = 500;
     res.json({ status: err.message });
 });
+
 app.listen(process.env.PORT,() =>{
     console.log(`App is running at localhost:${process.env.PORT}`);
 })

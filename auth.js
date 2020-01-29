@@ -10,7 +10,7 @@ module.exports.verifyUser = (req, res, next) => {
     let token = authHeader.split(' ')[1];
     let data;
     try {
-        data = jwt.verify(token,'secret message');
+        data = jwt.verify(token, "This is secret");
     } catch (err) {
         throw new Error('Token could not be verified!');
     }
@@ -20,3 +20,22 @@ module.exports.verifyUser = (req, res, next) => {
             next();
         })
 }
+
+
+
+module.exports.verifyAdmin = (req, res, next) => {
+
+        if (!req.user) {
+            let err = new Error('Unauthorized');
+            err.status = 401;
+            return next(err);
+        }
+        if (req.user.admin !== true) {
+            let err = new Error('Forbidden');
+            err.status = 403;
+            return next(err);
+        }
+    next();
+}
+
+
