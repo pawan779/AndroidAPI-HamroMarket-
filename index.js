@@ -8,6 +8,7 @@ const userRouter=require('./routes/users');
 const uploadRouter=require('./routes/upload');
 const productRouter=require('./routes/products');
 const categoryRouter=require('./routes/category')
+const adminRouter=require('./routes/admin')
 const cors = require('cors')
 const auth=require('./auth')
 
@@ -36,6 +37,7 @@ app.use('/upload',uploadRouter);
 app.use('/products',productRouter);
 app.use(auth.verifyUser);
 app.use('/category',categoryRouter);
+app.use('/admin',adminRouter);
 
 
 //for error handelling middleware

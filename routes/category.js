@@ -13,7 +13,7 @@ router.route('/')
     })
     .catch(next)
 })
-.post(auth.verifyAdmin,(req,res,next)=>{
+router.post('/',auth.verifyAdmin,(req,res,next)=>{
     Category.create(req.body)
     .then((result)=>{
         res.json(result)

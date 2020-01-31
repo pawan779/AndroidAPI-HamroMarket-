@@ -26,4 +26,20 @@ router
             .catch(next);
     })
 
+router.get("/my",auth.verifyUser,(req,res,next)=>{
+    Product.find({user:req.user._id})
+    .then((product)=>{
+        res.json(product)
+    })
+    .catch(next)
+})
+router.get("/my/:id",auth.verifyUser,(req,res,next)=>{
+    Product.find({_id:req.params.id})
+    .then((product)=>{
+        res.json(product)
+    })
+    .catch(next)
+})
+  
+
 module.exports = router;
