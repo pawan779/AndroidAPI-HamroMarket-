@@ -66,13 +66,21 @@ router.post('/login', (req, res, next) => {
 })
 
 router.get('/me',auth.verifyUser,(req,res,next)=>{
-    res.json({
-        _id:req.user._id,
-        fullName:req.user.fullName,
-        email:req.user.email,
-        image:req.user.image,
-        admin:req.user.admin
-    });
+    User.findById({_id:req.user._id})
+    .then((user)=>{
+        res.json(user)
+    })
+});
+
+
+router.put('/me',auth.verifyUser,(req,res,next)=>{
+ User.findByIdAndUpdate({_id:req.user._id})
+ .then(()=>{
+     User.findOne({_id:req.user._id})
+     .then((user)=>{
+         res.json(user)
+     })
+ })
 
 });
 

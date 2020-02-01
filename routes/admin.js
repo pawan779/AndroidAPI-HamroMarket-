@@ -11,4 +11,15 @@ router.get("/product/:id",auth.verifyAdmin,(req,res,next)=>{
     .catch(next)
 })
 
+router.put("/product/:id",auth.verifyAdmin,(req,res,next)=>{
+    Product.findByIdAndUpdate({_id:req.params.id},req.body)
+    .then(()=>{
+        Product.findOne({_id:req.params.id})
+        .then((result)=>{
+            res.json({isVerified:req.body.isVerified})
+        })
+    })
+    .catch(next)
+})
+
 module.exports=router;
