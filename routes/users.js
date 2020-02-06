@@ -57,7 +57,8 @@ router.post('/login', (req, res, next) => {
                         }, "This is secret");
                         res.json({
                             status: 'Login success!',
-                            token: token
+                            token: token,
+                            admin:user.admin
                         });
                     }).catch(next);
             }
@@ -70,19 +71,47 @@ router.get('/me',auth.verifyUser,(req,res,next)=>{
     .then((user)=>{
         res.json(user)
     })
-});
-
-
+    .catch(next)
+})
 router.put('/me',auth.verifyUser,(req,res,next)=>{
- User.findByIdAndUpdate({_id:req.user._id})
- .then(()=>{
-     User.findOne({_id:req.user._id})
-     .then((user)=>{
-         res.json(user)
-     })
- })
+    User.findByIdAndUpdate({_id:req.user._id},req.body)
+    .then(()=>{
+        User.findOne({_id:req.user._id})
+        .then((user)=>{
+            res.json(user)
+    })
+    .catch(next)
+})
+})
 
-});
+
+router.put("/password",auth.verifyUser,(req,res,next)=>{
+    User.findById({_id:req.user._id})
+    .then((user)=>{
+        if (user == null) {
+            let err = new Error("User not found!");
+            err.status = 401;
+            return next(err);
+        }
+        else
+        {
+            bcrypt.compare(req.body.password, user.password)
+            .then((isMatch) => {
+                if (!isMatch) {
+                    let err = new Error('Password does not match!');
+                    err.status = 401;
+                    return next(err);
+                }
+              User.findByIdAndUpdate({_id:user._id},req.body.password)
+              .then((result)=>{
+                  res.json({"message":"Password changed sucessfully"})
+              })
+              .catch(next);
+            }).catch(next);
+        }
+    })
+})
+
 
 
 
