@@ -48,14 +48,8 @@ router.get("/my",auth.verifyUser,(req,res,next)=>{
     })
     .catch(next)
 })
-router.get("/my/:id",auth.verifyUser,(req,res,next)=>{
-    Product.findById({_id:req.params.id})
-    .then((product)=>{
-        res.json(product)
-    })
-    .catch(next)
-})
 
+//get the clicked product
 router.get("/:id",(req,res,next)=>{
     Product.findById({_id:req.params.id})
     .then((product)=>{
@@ -64,8 +58,18 @@ router.get("/:id",(req,res,next)=>{
     .catch(next)
 })
 
+router.get("/my/:id",auth.verifyUser,(req,res,next)=>{
+    Product.findById({_id:req.params.id,user:req.user._id})
+    .then((product)=>{
+        res.json(product)
+    })
+    .catch(next)
+})
+
+
+//to edit user product
 router.put("/:id",auth.verifyUser,(req,res,next)=>{
-    Product.findByIdAndUpdate({_id:req.params.id},req.body)
+    Product.findByIdAndUpdate({_id:req.params.id,user:req.user._id},req.body)
     .then(()=>{
         Product.findOne({_id:req.params.id})
         .then((result)=>{
@@ -80,10 +84,14 @@ router.delete("/:id",auth.verifyUser,(req,res,next)=>{
 
     Product.findByIdAndDelete({_id:req.params.id})
     .then((result)=>{
-        res.json({"message":"product delted sucessfylly"})
+        res.json({"message":"product deleted sucessfylly"})
     })
     .catch(next)  
 
+})
+
+router.get('/search/:id',(req,res,next)=>{
+    Product.find({productName: /id/})
 })
   
 
