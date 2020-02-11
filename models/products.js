@@ -20,6 +20,9 @@ const productSchema = new mongoose.Schema({
     image: {
         type: String
     },
+    quantity:{
+        type:Number
+    },
     category:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Category'
@@ -31,6 +34,10 @@ const productSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
+    },
+    available{
+        type:Boolean,
+        
     }
 
 }, {timestamps: true});

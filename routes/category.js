@@ -30,6 +30,18 @@ router.get('/:id',auth.verifyAdmin,(req,res,next)=>{
     .catch(next)
 })
 
+
+//for user
+
+router.get('/product/:id',(req,res,next)=>{
+    Category.findById({_id:req.params.id})
+    .then((result)=>
+    {
+        res.json(result)
+    })
+    .catch(next)
+})
+
 router.put('/:id',auth.verifyAdmin,(req,res,next)=>{
     Category.findByIdAndUpdate({_id:req.params.id},req.body)
     .then(()=>{
