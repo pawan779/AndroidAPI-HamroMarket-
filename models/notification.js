@@ -19,6 +19,10 @@ const NotificationSchema = new mongoose.Schema(
    status:{
      type:Boolean,
      default:true
+   },
+   show:{
+     type:Boolean,
+     default:true
    }
   },
   { timestamps: true }

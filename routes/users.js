@@ -66,6 +66,19 @@ router.post('/login', (req, res, next) => {
         }).catch(next);
 })
 
+
+//get all user
+
+router.get('/all',auth.verifyUser,auth.verifyAdmin,(req,res,next)=>
+{
+    User.find({admin:false})
+    .then((result)=>{
+        res.json(result)
+    })
+    .catch(next)
+})
+
+
 router.get('/me',auth.verifyUser,(req,res,next)=>{
     User.findById({_id:req.user._id})
     .then((user)=>{

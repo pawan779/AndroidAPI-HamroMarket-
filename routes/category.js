@@ -21,7 +21,16 @@ router.post('/',auth.verifyAdmin,(req,res,next)=>{
     .catch(next)
 })
 
-router.put('/:id',auth.verifyUser,(req,res,next)=>{
+router.get('/:id',auth.verifyAdmin,(req,res,next)=>{
+    Category.findById({_id:req.params.id})
+    .then((result)=>
+    {
+        res.json(result)
+    })
+    .catch(next)
+})
+
+router.put('/:id',auth.verifyAdmin,(req,res,next)=>{
     Category.findByIdAndUpdate({_id:req.params.id},req.body)
     .then(()=>{
         //to show all updated data
@@ -29,6 +38,14 @@ router.put('/:id',auth.verifyUser,(req,res,next)=>{
         .then((result)=>{
             res.json(result)
         })
+    })
+    .catch(next)
+})
+router.delete("/:id",auth.verifyAdmin,(req,res,next)=>{
+    Category.findByIdAndDelete({_id:req.params.id})
+    .then((result)=>
+    {
+        res.json({"meassage":"deleted sucessfully!!"})
     })
     .catch(next)
 })
