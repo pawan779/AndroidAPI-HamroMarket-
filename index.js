@@ -9,8 +9,9 @@ const uploadRouter=require('./routes/upload');
 const productRouter=require('./routes/products');
 const categoryRouter=require('./routes/category')
 const adminRouter=require('./routes/admin')
-const cartRouter=require('./routes/cart')
+const buyRouter=require('./routes/buy')
 const notificationRoute=require('./routes/notification')
+const stripeRoute=require('./routes/stripe')
 const cors = require('cors')
 const auth=require('./auth')
 
@@ -37,9 +38,10 @@ mongoose.connect(process.env.URL,{
 app.use('/users',userRouter);
 app.use('/upload',uploadRouter);
 app.use('/products',productRouter);
+app.use('/checkout',stripeRoute)
 app.use(auth.verifyUser);
 app.use('/category',categoryRouter);
-app.use('/cart',cartRouter);
+app.use('/buy',buyRouter);
 app.use('/admin',adminRouter);
 app.use('/notification',notificationRoute);
 

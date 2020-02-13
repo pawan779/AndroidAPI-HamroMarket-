@@ -35,9 +35,10 @@ const productSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    available{
+    available:{
         type:Boolean,
-        
+        default:true
+
     }
 
 }, {timestamps: true});
