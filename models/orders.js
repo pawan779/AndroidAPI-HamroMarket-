@@ -1,17 +1,28 @@
 const mongoose = require('mongoose');
 
-const productSchema = new mongoose.Schema({
+const orderSchema = new mongoose.Schema({
     user: {
-        type: String,
-        // required: true
-    },
-    productId: {
-        type: String,
-        // required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
     },
     cartId: {
-        type: String,
-        // required: true
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Cart'
+    },
+    totalPrice: mongoose.Decimal128,
+    
+    tax: mongoose.Decimal128
+    ,
+    address1:{
+        type:String,
+    },
+    address2:{
+        type:String,
+        // required:true
+    },
+    address3:{
+        type:String,
+        // required:true
     },
     type:{
         type:Boolean,
@@ -20,4 +31,4 @@ const productSchema = new mongoose.Schema({
 
 }, {timestamps: true});
 
-module.exports = mongoose.model('Product', productSchema);
+module.exports = mongoose.model('Orders', orderSchema);

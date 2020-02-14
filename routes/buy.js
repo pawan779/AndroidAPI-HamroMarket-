@@ -13,7 +13,9 @@ router.post("/",auth.verifyUser,(req, res,next) => {
          
         }).then
         ((result)=>{
-          res.json(result)
+          res.json({
+            _id:result._id
+          })
         })
         .catch(next)
   
@@ -25,8 +27,7 @@ router.post("/",auth.verifyUser,(req, res,next) => {
         .then((result)=>{
           res.json({
             products:result.products,
-            price:result.products.price
-    
+            cart:result
           })
         })
         .catch(next)

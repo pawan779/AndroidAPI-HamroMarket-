@@ -1,5 +1,6 @@
 const express=require("express");
 const mongoose=require("mongoose");
+const connection=require('./TestFolder/dbtest')
 const morgan = require('morgan');
 const user=require("./models/users")
 const bodyParser=require('body-parser')
@@ -10,6 +11,7 @@ const productRouter=require('./routes/products');
 const categoryRouter=require('./routes/category')
 const adminRouter=require('./routes/admin')
 const buyRouter=require('./routes/buy')
+const ordersRoute=require('./routes/orders');
 const notificationRoute=require('./routes/notification')
 const stripeRoute=require('./routes/stripe')
 const cors = require('cors')
@@ -40,6 +42,7 @@ app.use('/upload',uploadRouter);
 app.use('/products',productRouter);
 app.use('/checkout',stripeRoute)
 app.use(auth.verifyUser);
+app.use('/orders',ordersRoute);
 app.use('/category',categoryRouter);
 app.use('/buy',buyRouter);
 app.use('/admin',adminRouter);
@@ -60,7 +63,16 @@ app.use((err, req, res, next) => {
     res.json({ status: err.message });
 });
 
-app.listen(process.env.PORT,() =>{
-    console.log(`App is running at localhost:${process.env.PORT}`);
+// app.listen(process.env.PORT,() =>{
+//   console.log(`App is running at localhost:${process.env.PORT}`);
+// })
+
+connection.connect()
+  .then(() =>{
+    app.listen(process.env.PORT, () => {
+      console.log(`App is running at localhost:${process.env.PORT}`);
+    });
+
 })
+  module.exports= app;
 

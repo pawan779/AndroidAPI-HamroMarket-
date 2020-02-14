@@ -19,7 +19,6 @@ router.get('/',(req,res,next)=>{
     })
     .catch(next)
 })
-
 router.put('/',(req,res,next)=>{
 
     Notification.findOneAndUpdate({user:req.user._id,show:true},req.body)
