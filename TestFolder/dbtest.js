@@ -9,7 +9,7 @@ function connect() {
             mockgoose.prepareStorage()
             .then(() => {
 
-                mongoose.connect(process.env.URL, {
+                mongoose.connect(process.env.dummyURL, {
                     useNewUrlParser: true,
                     useUnifiedTopology: true,
                     useFindAndModify: false,

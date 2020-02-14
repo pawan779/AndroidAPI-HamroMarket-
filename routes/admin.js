@@ -34,6 +34,8 @@ router.get('/products',auth.verifyAdmin,(req, res, next) => {
      .catch(next)
 })
 
+
+//verify the product
 router.put('/product/:id',auth.verifyAdmin,(req,res,next)=>{
     Product.findByIdAndUpdate({_id:req.params.id},req.body)
     .then(()=>{

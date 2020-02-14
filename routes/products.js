@@ -21,7 +21,8 @@ router
             .then((product) => {
                 res.statusCode = 200;
                 res.json({
-                    product
+                    product,
+                    _id:product._id
                 });
             })
             .catch(next);
