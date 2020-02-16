@@ -29,11 +29,11 @@ router
     })
 
 
-    //to get latest 6 products
+    //to get latest 10 products
 
     router.get('/latest',(req,res,next)=>{
         var sort={_id:-1}
-        Product.find({isVerified:true}).sort(sort).limit(6)
+        Product.find({isVerified:true}).sort(sort).limit(10)
         .then((result)=>
         {
             res.json(result)
@@ -91,9 +91,6 @@ router.delete("/:id",auth.verifyUser,(req,res,next)=>{
 
 })
 
-router.get('/search/:id',(req,res,next)=>{
-    Product.find({productName: /id/})
-})
-  
+
 
 module.exports = router;

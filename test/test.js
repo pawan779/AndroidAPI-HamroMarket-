@@ -32,8 +32,8 @@ describe('Testing API all routes', () => {
 it('Pass, register user', (done) => {
     request(app).post('/users/register')
     .send({
-        fullName:"p",
-        email:'p@gmail.com',
+        fullName:"pawan",
+        email:'pa1@gmail.com',
         phone:"1234567890",
         mobilePhone:"9087654321",
         address1:"ktm1",
@@ -79,7 +79,7 @@ it('Pass, register user', (done) => {
         request(app).post('/users/login')
         .send({
             email:'admin@admin.com',
-            password:'admin123'           
+            password:'pawan123'           
 
         })
             .then((res) => {

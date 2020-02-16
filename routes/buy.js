@@ -1,6 +1,7 @@
 const express=require('express');
 const router=express.Router();
 const Cart=require('../models/carts');
+const ProductOrder=require('../models/productOrder')
 const auth=require('../auth');
 
 
@@ -22,6 +23,18 @@ router.post("/",auth.verifyUser,(req, res,next) => {
       })
 
 
+      router.post('/buy',auth.verifyUser,(req,res,next)=>{
+        let order=new ProductOrder(req.body);
+        order.user=req.user._id;
+        order.total=req.body.price*req.body.quantity;
+        order.save()
+        .then((result)=>{
+          res.json(result)
+        })
+        .catch(next)
+      })
+
+      
       router.get('/:id',auth.verifyUser,(req,res,next)=>{
         Cart.findOne({user:req.user._id,_id:req.params.id})
         .then((result)=>{
@@ -32,5 +45,17 @@ router.post("/",auth.verifyUser,(req, res,next) => {
         })
         .catch(next)
       })
+
+  //get purchased product
+
+  router.get('/',auth.verifyUser,(req,res,next)=>{
+    sort={_id:-1}
+    ProductOrder.find({user:req.user._id}).sort(sort)
+    .then((result)=>{
+      res.json(result)
+    })
+    .catch(next)
+  })
+    
 
   module.exports=router

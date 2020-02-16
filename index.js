@@ -12,7 +12,6 @@ const categoryRouter=require('./routes/category')
 const adminRouter=require('./routes/admin')
 const buyRouter=require('./routes/buy')
 const ordersRoute=require('./routes/orders');
-const notificationRoute=require('./routes/notification')
 const stripeRoute=require('./routes/stripe')
 const cors = require('cors')
 const auth=require('./auth')
@@ -46,7 +45,6 @@ app.use('/orders',ordersRoute);
 app.use('/category',categoryRouter);
 app.use('/buy',buyRouter);
 app.use('/admin',adminRouter);
-app.use('/notification',notificationRoute);
 
 
 

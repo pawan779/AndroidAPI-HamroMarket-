@@ -18,15 +18,15 @@ const orderSchema = new mongoose.Schema({
     },
     address2:{
         type:String,
-        // required:true
+        
     },
     address3:{
         type:String,
-        // required:true
+    
     },
     type:{
         type:Boolean,
-        default:true
+    
     }
 
 }, {timestamps: true});
