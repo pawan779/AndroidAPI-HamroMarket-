@@ -10,6 +10,7 @@ const uploadRouter=require('./routes/upload');
 const productRouter=require('./routes/products');
 const categoryRouter=require('./routes/category')
 const adminRouter=require('./routes/admin')
+const feedbackRouter=require('./routes/feedback')
 const buyRouter=require('./routes/buy')
 const ordersRoute=require('./routes/orders');
 const stripeRoute=require('./routes/stripe')
@@ -39,7 +40,8 @@ app.use(express.static(__dirname + "/public"));
 app.use('/users',userRouter);
 app.use('/upload',uploadRouter);
 app.use('/products',productRouter);
-app.use('/checkout',stripeRoute)
+app.use('/checkout',stripeRoute);
+app.use('/feedback',feedbackRouter);
 app.use(auth.verifyUser);
 app.use('/orders',ordersRoute);
 app.use('/category',categoryRouter);
