@@ -1,0 +1,4 @@
+2020-02-21T13:18:23.470+0545 E  QUERY    [js] uncaught exception: Error: need an update object or pipeline :
+DBCollection.prototype._parseUpdate@src/mongo/shell/collection.js:446:15
+DBCollection.prototype.update@src/mongo/shell/collection.js:492:18
+@(shell):1:1

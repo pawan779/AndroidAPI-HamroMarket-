@@ -51,6 +51,28 @@ router.put('/product/:id',auth.verifyAdmin,(req,res,next)=>{
 })
 
 
+  //to get latest verified products
+
+  router.get('/verified',auth.verifyAdmin,(req,res,next)=>{
+      const sort={_id:-1}
+    Product.find({isVerified:true}).sort(sort)
+    .then((result)=>
+    {
+        res.json(result)
+    })
+    .catch(next)
+})
+ //to get latest notverified products
+
+ router.get('/notverified',auth.verifyAdmin,(req,res,next)=>{
+    const sort={_id:-1}
+    Product.find({isVerified:false}).sort(sort)
+    .then((result)=>
+    {
+        res.json(result)
+    })
+    .catch(next)
+})
    
 
 module.exports=router;

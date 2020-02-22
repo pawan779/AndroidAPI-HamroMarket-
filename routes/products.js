@@ -40,6 +40,8 @@ router
         })
         .catch(next)
     })
+
+   
   
 
 router.get("/my",auth.verifyUser,(req,res,next)=>{
@@ -92,5 +94,33 @@ router.delete("/:id",auth.verifyUser,(req,res,next)=>{
 })
 
 
+//count total products
+
+router.get('/total/verified',(req,res,next)=>{
+    Product.find({isVerified:true}).count()
+    .then((result)=>{
+        res.json(result)
+    })
+    .catch(next)
+})
+
+router.get('/total/notverified',(req,res,next)=>{
+    Product.find({isVerified:false}).count()
+    .then((result)=>{
+        res.json(result)
+    })
+    .catch(next)
+})
+
+//for searching
+
+router.get('/search/:id',(req,res,next)=>{
+    var search=req.params.id;
+    Product.find({$or:[{productName:{$regex: search}},{productDescription:{$regex: search}},{productPrice:{$regex: search}},{productCondition:{$regex: search}}]})
+    .then((result)=>{
+        res.json(result)
+    })
+    .catch(next)
+})
 
 module.exports = router;

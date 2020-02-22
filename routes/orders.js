@@ -24,4 +24,25 @@ router.get('/:id',auth.verifyUser,(req,res,next)=>{
     .catch(next)
 })
 
+//all purchased product
+
+router.get('/my/product',auth.verifyUser,(req,res,next)=>{
+    Order.find({user:req.user._id})
+    .then((result)=>{
+        res.json(result)
+    })
+    .catch(next)
+})
+
+//count total orders
+
+router.get('/total/count',(req,res,next)=>{
+    Order.find({}).countDocuments()
+    .then((result)=>{
+        res.json(result)
+    })
+    .catch(next)
+})
+
+
 module.exports=router

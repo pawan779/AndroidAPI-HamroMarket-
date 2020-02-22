@@ -62,4 +62,17 @@ router.delete("/:id",auth.verifyAdmin,(req,res,next)=>{
     .catch(next)
 })
 
+
+
+//count total category
+
+router.get('/total/count',(req,res,next)=>{
+    Category.find({}).count()
+    .then((result)=>{
+        res.json(result)
+    })
+    .catch(next)
+})
+
+
 module.exports=router;

@@ -1,0 +1,19 @@
+{
+	"result": {
+		"ok": 1,
+		"n": 1
+	},
+	"ops": [
+		{
+			"email": "admin@admin.com",
+			"password": "$2a$10$cYyQi47x722YMfOQVCrQDe7nbu8HMErVDA4lDek0q7TrWs1axCD0O",
+			"fullName": "admin",
+			"admin": true,
+			"_id": "5e4f87f03f5989517d0a5f6b"
+		}
+	],
+	"insertedCount": 1,
+	"insertedIds": {
+		"0": "5e4f87f03f5989517d0a5f6b"
+	}
+}

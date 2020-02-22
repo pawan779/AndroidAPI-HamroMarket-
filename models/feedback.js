@@ -7,14 +7,12 @@ const feedbackSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: [true,'email is required'],
-        unique:true
+        required: [true,'email is required']
     },
    
     mobilePhone: {
         type: String,
-        required: [true,'mobile phone is required'],
-        minlength: 10
+        required: [true,'mobile phone is required']
     },
     message:
     {
