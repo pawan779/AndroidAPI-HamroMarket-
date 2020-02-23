@@ -58,4 +58,14 @@ router.post("/",auth.verifyUser,(req, res,next) => {
   })
     
 
+  //all purchased product
+
+router.get('/my/product',auth.verifyUser,(req,res,next)=>{
+  Order.find({user:req.user._id})
+  .then((result)=>{
+      res.json(result)
+  })
+  .catch(next)
+})
+
   module.exports=router

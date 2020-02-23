@@ -7,7 +7,7 @@ const user=require('../models/users')
 router.route('/')
 
 .get((req,res,next)=>{
-    Category.find({})
+    Category.find()
     .then((result)=>{
         res.json(result)
     })

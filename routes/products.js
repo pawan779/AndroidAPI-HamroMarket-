@@ -45,7 +45,8 @@ router
   
 
 router.get("/my",auth.verifyUser,(req,res,next)=>{
-    Product.find({user:req.user._id})
+    var sort={_id:-1};
+    Product.find({user:req.user._id}).sort(sort)
     .then((product)=>{
         res.json(product)
     })

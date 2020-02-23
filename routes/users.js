@@ -116,6 +116,14 @@ router.post("/password", auth.verifyUser, (req, res, next) => {
     })  
 })
 
+router.delete("/:id",auth.verifyUser,auth.verifyAdmin,(req,res,next)=>{
+    User.findByIdAndDelete({_id:req.params.id})
+    .then((result)=>{
+        res.json({message:"Delted sucessfully"})
+    })
+    .catch(next);
+})
+
 router.put("/password/update", auth.verifyUser, (req, res, next) => {
     let password = req.body.password;
     bcrypt.hash(password, 10, function (err, hash) {

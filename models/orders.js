@@ -8,11 +8,8 @@ const orderSchema = new mongoose.Schema({
     cartId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Cart'
-    },
-    totalPrice: mongoose.Decimal128,
-    
-    tax: mongoose.Decimal128
-    ,
+    },    
+  
     address1:{
         type:String,
     },
